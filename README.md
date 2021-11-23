@@ -1,4 +1,4 @@
-#Inventário
+# Inventário
 ## Importar os ficheiros
 Clona o repositorio dentro da pasta /var/www/html
 ```
