@@ -25,11 +25,8 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Computadores Abatidos</h2>
-                <?php   
-                    #$q = $_GET['q'];
+                <?php
                     include('connect.php');
-
-                    #$sql="SELECT piloto.nome, piloto.sigla, participa.pontos FROM piloto JOIN participa ON participa.id_piloto = piloto.id_piloto WHERE sigla = '".$q."' ORDER BY participa.pontos ASC" ;
                     echo "<table class='table'>
                     <tr>
                         <th scope='col'>Marca</th>
@@ -37,12 +34,12 @@
                         <th scope='col'>Sistema Operativo</th>
                         <th scope='col'>Ações</th>
                     </tr>";
-                    $sql = "SELECT * FROM comp INNER JOIN comp_abat ON comp.id_abat = comp_abat.id_abat";
+                    $sql = "SELECT * FROM comp_abat INNER JOIN comp ON comp_abat.id_comp = comp.id_comp";
                     $result = mysqli_query($conn,$sql);
 
                     if($result){
                         while($row = mysqli_fetch_array($result)) {
-                            $id=$row['id_abat'];
+                            $id=$row['id_comp'];
                             $marca=$row['marca'];
                             $modelo=$row['modelo'];
                             $so=$row['so'];
@@ -50,8 +47,8 @@
                             echo "<td>" . $marca . "</td>";
                             echo "<td>" . $modelo . "</td>"; 
                             echo "<td>" . $so . "</td>";
-                            echo "<td><a class='btn btn-outline-primary btn-sm' role='button' href='view.php'>Ver</a></td>";
-                            echo "<td><a class='btn btn-danger btn-sm' role='button' href='delet.php?deletid=".$id."'>Remover</a></td>";
+                            echo "<td><a class='btn btn-outline-primary btn-sm' role='button' href='view.php?viewid=".$id."'>Ver</a></td>";
+                            echo "<td><a class='btn btn-danger btn-sm' role='button' href='deletabt.php?deletabt=".$id."'>Remover</a></td>";
                             echo "</tr>";
                         }
                         echo "</table>";
@@ -59,9 +56,21 @@
                     }
                 ?>
             </div>
-            <!--data-whatever=".$id."-->
         </div>
-        
+    </div>
+    <div class="container pt-4">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+                <span class="text-muted">© 2021 Créditos: João Sousa e Pedro</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted" href="https://github.com/joaosousaorg/invent.git"><svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></li>
+            </ul>
+        </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
