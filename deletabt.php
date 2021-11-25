@@ -1,6 +1,5 @@
 <?php
 include('connect.php');
-
 if (isset($_GET['deletabt'])){
     $id=$_GET['deletabt'];
 
