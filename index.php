@@ -3,6 +3,7 @@
     <title>Inventário</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- O Bootstrap é uma framework css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 </head>
@@ -33,6 +34,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                <!-- Formulario para inserir os dados na tabela comp -->
                                 <form action="form.php" method="POST">
                                     <label class="form-label">Marca</label>
                                     <input class="form-control" type="text" name="marca">
@@ -62,10 +64,12 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                <!-- Formolário para inserir na tabela software -->
                                 <form action="softform.php" method="POST">
                                     <label class="form-label" for="compselect">Computador</label>
                                     <select class="form-select" id="compselect" name="comp" required>
                                         <?php
+                                            // Este script php vai buscar os nomes dos computadores e respetivos modelos
                                             include('connect.php');
                                             $sql = "SELECT * FROM comp ORDER BY id_comp";
                                             $result = mysqli_query($conn,$sql);
@@ -99,6 +103,7 @@
                 <button type='button' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insert">Inserir Computador</button>
                 <button type='button' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#soft">Inserir Programa</button>
                 <?php
+                    // Este script vai preencher a tabela html como os dados da tabela comp da base de dados
                     include('connect.php');
                     echo "<table class='table'>
                     <tr>
@@ -144,6 +149,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                <!-- Formolário para editar os dados da tabela comp -->
                                 <form action="edit.php" method="POST">
                                     <input name="id" type="hidden" class="form-control" name="id" id="id-comp">
                                     <label class="form-label">Marca</label>
@@ -170,7 +176,7 @@
                 <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                 <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
                 </a>
-                <span class="text-muted">© 2021 Créditos: João Sousa e Pedro</span>
+                <span class="text-muted">© 2021 Créditos: João Sousa e Pedro Proença</span>
             </div>
 
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
@@ -181,6 +187,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script type="text/javascript">
+        // Este script tem a função de enviar os valores para o modal assim que clicar no botão Editar
         var exampleModal = document.getElementById('edit')
         exampleModal.addEventListener('show.bs.modal', function (event) {
             // Button that triggered the modal
